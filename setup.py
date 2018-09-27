@@ -1,21 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 # https://github.com/kennethreitz/setup.py/blob/master/setup.py
-
 # Note: To use the 'upload' functionality of this file, you must:
 #   $ pip install twine
-
 import io
 import os
 import sys
 from shutil import rmtree
 
-from setuptools import find_packages, setup, Command
+from setuptools import Command
+from setuptools import find_packages
+from setuptools import setup
 
 # Package meta-data.
 NAME = 'optionsdict'
-DESCRIPTION = 'Utility to convert list of string key=value pairs to Python dictionary.'
+DESCRIPTION = (
+    'Utility to convert list of string key=value pairs to '
+    'Python dictionary.'
+)
 URL = 'https://github.com/bdube/python-optionsdict'
 EMAIL = 'brian.dube@gmail.com'
 AUTHOR = 'Brian Dube'
@@ -28,7 +30,7 @@ REQUIRED = [
 ]
 
 test_requirements = [
-    'pytest>=2.8.0'
+    'pytest>=2.8.0',
 ]
 
 # What packages are optional?
@@ -39,7 +41,8 @@ EXTRAS = {
 # The rest you shouldn't have to touch too much :)
 # ------------------------------------------------
 # Except, perhaps the License and Trove Classifiers!
-# If you do change the License, remember to change the Trove Classifier for that!
+# If you do change the License, remember to change the Trove
+# Classifier for that!
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -85,7 +88,11 @@ class UploadCommand(Command):
             pass
 
         self.status('Building Source and Wheel (universal) distribution…')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        os.system(
+            '{0} setup.py sdist bdist_wheel --universal'.format(
+                sys.executable,
+            ),
+        )
 
         self.status('Uploading the package to PyPI via Twine…')
         os.system('twine upload dist/*')
@@ -93,7 +100,7 @@ class UploadCommand(Command):
         self.status('Pushing git tags…')
         os.system('git tag v{0}'.format(about['__version__']))
         os.system('git push --tags')
-        
+
         sys.exit()
 
 
