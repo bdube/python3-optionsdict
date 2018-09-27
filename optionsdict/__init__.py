@@ -4,6 +4,8 @@
 def string_to_python(sval):
     if sval is None:
         return None
+    if sval == 'none':
+        return None
     if sval == 'true':
         return True
     if sval == 'false':
